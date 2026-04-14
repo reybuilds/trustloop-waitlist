@@ -202,11 +202,11 @@ export function LandingPage() {
                 </div>
 
                 <h1 className="text-3xl font-bold leading-[1.08] tracking-[-0.02em] text-foreground sm:text-4xl md:text-5xl lg:text-[56px]">
-                  Let your team decide what gets built next
+                  Collect testimonials on WhatsApp, share proof, boost conversions
                 </h1>
 
                 <p className="mt-6 max-w-md text-base leading-[1.6] text-muted-foreground sm:mt-8 sm:text-lg">
-                  Submit feature ideas, upvote what matters most, and let the best ideas rise to the top — so you always ship the right thing.
+                  Collect verified testimonials — text, voice, video — from your clients. Display them anywhere on your website, social media, or proposals to turn interest into sales.
                 </p>
 
                 <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
