@@ -62,72 +62,16 @@ function AppMockup() {
 
 
 export function LandingPage() {
-  const [showAuth, setShowAuth] = useState(false);
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [showNav, setShowNav] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowNav(window.scrollY > 80);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const script = document.createElement('script');
+    script.src = 'https://paperform.co/__embed.min.js';
+    document.body.appendChild(script);
+    return () => { script.remove(); };
   }, []);
-
-  const scrollToAuth = () => {
-    setShowAuth(true);
-    setMobileNavOpen(false);
-    setTimeout(() => {
-      document.getElementById('auth-section')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
-
-  const scrollToHowItWorks = () => {
-    setMobileNavOpen(false);
-    document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Nav — appears on scroll */}
-      <nav className={`fixed top-0 left-0 right-0 z-40 border-b border-border/50 bg-background/80 backdrop-blur-xl px-6 py-4 sm:px-8 md:px-12 transition-all duration-300 ${showNav ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
-        <div className="mx-auto flex max-w-6xl h-8 items-center justify-between">
-          <UpvoteLogo size="md" variant="light" />
-
-          <div className="hidden items-center gap-8 sm:flex">
-            <button onClick={scrollToHowItWorks} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              How it works
-            </button>
-            <button
-              onClick={scrollToAuth}
-              className="rounded-[10px] bg-foreground px-5 py-1.5 text-sm font-semibold text-background transition-all hover:opacity-90"
-            >
-              Get started
-            </button>
-          </div>
-
-          <button
-            onClick={() => setMobileNavOpen(!mobileNavOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-[8px] text-muted-foreground transition-colors hover:text-foreground sm:hidden"
-          >
-            {mobileNavOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-
-        {mobileNavOpen && (
-          <div className="mx-auto max-w-6xl space-y-3 px-1 pt-4 sm:hidden">
-            <button onClick={scrollToHowItWorks} className="block w-full py-2 text-left text-sm text-muted-foreground transition-colors hover:text-foreground">
-              How it works
-            </button>
-            <button
-              onClick={scrollToAuth}
-              className="w-full rounded-[10px] bg-foreground px-4 py-2 text-sm font-semibold text-background"
-            >
-              Get started
-            </button>
-          </div>
-        )}
-      </nav>
 
       {/* Content */}
       <div className="relative">
