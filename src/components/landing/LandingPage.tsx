@@ -209,25 +209,13 @@ export function LandingPage() {
                   Collect verified testimonials — text, voice, video — from your clients. Display them anywhere on your website, social media, or proposals to turn interest into sales.
                 </p>
 
-                <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
-                  <button
-                    onClick={scrollToAuth}
-                    className="group inline-flex items-center justify-center gap-2 rounded-[10px] bg-lavender px-8 py-3 text-base font-semibold text-foreground transition-all hover:shadow-lg hover:shadow-lavender/25"
-                  >
-                    Get started free <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </button>
-                  <button
-                    onClick={scrollToHowItWorks}
-                    className="inline-flex items-center justify-center rounded-[10px] border border-border bg-white px-8 py-3 text-base font-semibold text-foreground transition-colors hover:bg-muted"
-                  >
-                    See how it works
-                  </button>
+                <div className="mt-10">
+                  <div data-paperform-id="nay1bcdq"></div>
                 </div>
               </div>
 
-              {/* Right mockup — clean, no bubbles cluttering */}
+              {/* Right mockup */}
               <div className="w-full max-w-md lg:max-w-lg flex-shrink-0">
-                {/* Decorative floating accents — 3 small, tasteful */}
                 <div className="relative">
                   <div className="pointer-events-none absolute -top-6 -left-6 z-10 h-12 w-12 rounded-full bg-lavender shadow-lg shadow-lavender/20 animate-[float_6s_ease-in-out_infinite] flex items-center justify-center">
                     <ThumbsUp className="h-5 w-5 text-foreground" />
@@ -245,101 +233,11 @@ export function LandingPage() {
           </div>
         </section>
 
-        {/* ━━━ HOW IT WORKS — dark section ━━━ */}
-        <section id="how-it-works" className="relative">
-          <div className="mx-6 rounded-[24px] bg-foreground text-background sm:mx-10">
-          <div className="mx-auto max-w-6xl px-6 py-20 sm:px-10 sm:py-28">
-            <div className="mb-14 max-w-lg">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-lavender">How it works</p>
-              <h2 className="text-3xl font-bold leading-[1.08] tracking-[-0.01em] sm:text-4xl">Three steps from idea to shipped feature</h2>
-            </div>
-
-            <div className="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-10">
-              {steps.map((step, i) => {
-                const iconColors = [
-                  'bg-lavender text-foreground',
-                  'bg-[oklch(0.85_0.12_155)] text-foreground',
-                  'bg-[oklch(0.85_0.10_55)] text-foreground',
-                ];
-                return (
-                  <div key={i} className="relative">
-                    
-                    <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] ${iconColors[i]}`}>
-                      <step.icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="text-lg font-semibold tracking-[-0.02em] text-white">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-[1.6] text-white/70">{step.description}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          </div>
-        </section>
-
-        {/* ━━━ FEATURES — light with left header ━━━ */}
-        <section className="py-20 sm:py-28">
-          <div className="mx-auto max-w-6xl px-6 sm:px-10">
-            <div className="flex flex-col gap-12 lg:flex-row lg:gap-20">
-              {/* Sticky header on left */}
-              <div className="lg:w-80 lg:flex-shrink-0">
-                <div className="lg:sticky lg:top-8">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-lavender">Features</p>
-                  <h2 className="text-3xl font-bold leading-[1.08] tracking-[-0.01em] text-foreground sm:text-4xl">Everything you need to prioritize well</h2>
-                  <p className="mt-4 text-base leading-[1.6] text-muted-foreground">
-                    Simple tools that give your product decisions a foundation of real team input.
-                  </p>
-                </div>
-              </div>
-
-              {/* Feature cards on right */}
-              <div className="flex-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {features.map((feature, i) => (
-                  <div key={i} className="group rounded-[16px] border border-border p-7 transition-all hover:border-lavender/30 hover:shadow-lg hover:shadow-lavender/5 sm:p-8">
-                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] bg-lavender/10 transition-colors group-hover:bg-lavender/15">
-                      <feature.icon className="h-5 w-5 text-lavender" />
-                    </div>
-                    <h3 className="text-base font-semibold tracking-[-0.02em] text-foreground">{feature.title}</h3>
-                    <p className="mt-2 text-sm leading-[1.6] text-muted-foreground">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ━━━ CTA — gradient bg ━━━ */}
-        <section id="auth-section" className="relative">
-          <div className="mx-6 mb-4 rounded-[24px] bg-foreground px-6 py-16 sm:mx-10 sm:px-12 sm:py-24 md:py-28">
-
-            <div className="relative mx-auto max-w-2xl">
-              {!showAuth ? (
-                <div className="text-center">
-                  <h2 className="text-3xl font-bold leading-[1.08] tracking-[-0.01em] text-white sm:text-4xl">Ready to shape what's next?</h2>
-                  <p className="mx-auto mt-4 max-w-lg text-base leading-[1.6] text-white/60">
-                    Sign in to start submitting ideas, voting on features, and helping your team prioritize what matters.
-                  </p>
-                  <button
-                    onClick={scrollToAuth}
-                    className="group mt-10 inline-flex items-center justify-center gap-2 rounded-[10px] bg-lavender px-8 py-3 text-base font-semibold text-foreground transition-all hover:shadow-lg hover:shadow-lavender/25"
-                  >
-                    Get started free <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </button>
-                </div>
-              ) : (
-                <div className="rounded-[16px] bg-background p-6 sm:p-8 shadow-2xl">
-                  <AuthPage />
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
         {/* Footer */}
         <footer className="px-6 py-4 sm:px-10">
           <div className="mx-auto flex max-w-6xl items-center justify-between">
             <UpvoteLogo size="sm" variant="light" />
-            <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Upvote. All rights reserved.</p>
+            <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Trustloop. All rights reserved.</p>
           </div>
         </footer>
       </div>
