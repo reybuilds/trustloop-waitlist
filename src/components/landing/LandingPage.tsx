@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-import { ThumbsUp, ThumbsDown, Heart, Rocket, ArrowRight, Lightbulb, Menu, X, Zap, BarChart3, Shield, Users } from 'lucide-react';
-import { AuthPage } from '@/components/auth/AuthPage';
+import { useEffect } from 'react';
+import { ThumbsUp, ThumbsDown, Heart } from 'lucide-react';
 import { UpvoteLogo } from '@/components/brand/UpvoteLogo';
 
 
@@ -61,49 +60,6 @@ function AppMockup() {
   );
 }
 
-const steps = [
-  {
-    num: '01',
-    icon: Lightbulb,
-    title: 'Submit an idea',
-    description: 'Anyone on the team can propose a feature. Add a title, description, and category.',
-  },
-  {
-    num: '02',
-    icon: ThumbsUp,
-    title: 'Vote and discuss',
-    description: 'Upvote or downvote ideas. Leave comments to refine proposals and add context.',
-  },
-  {
-    num: '03',
-    icon: Rocket,
-    title: 'Watch it ship',
-    description: 'Track status from "New" to "Shipped." The most-wanted features rise to the top.',
-  },
-];
-
-const features = [
-  {
-    icon: Zap,
-    title: 'Instant feedback loops',
-    description: 'Get signal on what your team actually wants — no more guessing or spreadsheet polls.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Priority by consensus',
-    description: 'The most popular ideas surface automatically. Build with confidence, backed by real votes.',
-  },
-  {
-    icon: Shield,
-    title: 'Role-based access',
-    description: 'Admins manage statuses and moderate. Team members submit, vote, and comment freely.',
-  },
-  {
-    icon: Users,
-    title: 'Built for teams',
-    description: 'See who submitted what, track discussions, and keep everyone aligned on the roadmap.',
-  },
-];
 
 export function LandingPage() {
   const [showAuth, setShowAuth] = useState(false);
