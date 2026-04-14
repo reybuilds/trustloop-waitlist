@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import logoImage from '@/assets/trustloop-logo.png';
+import logoImage from '@/assets/trustloop-logo-v2.png';
 
 interface UpvoteLogoProps {
   size?: 'sm' | 'md' | 'lg';
