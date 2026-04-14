@@ -1,5 +1,5 @@
-import { ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import logoImage from '@/assets/trustloop-logo.png';
 
 interface UpvoteLogoProps {
   size?: 'sm' | 'md' | 'lg';
@@ -9,9 +9,9 @@ interface UpvoteLogoProps {
 }
 
 const sizeMap = {
-  sm: { box: 'h-6 w-6', icon: 'h-3.5 w-3.5', text: 'text-sm' },
-  md: { box: 'h-7 w-7', icon: 'h-4 w-4', text: 'text-base' },
-  lg: { box: 'h-10 w-10', icon: 'h-5 w-5', text: 'text-xl' },
+  sm: { box: 'h-6 w-6', text: 'text-sm' },
+  md: { box: 'h-7 w-7', text: 'text-base' },
+  lg: { box: 'h-10 w-10', text: 'text-xl' },
 };
 
 export function UpvoteLogo({ size = 'md', variant = 'dark', showText = true, className }: UpvoteLogoProps) {
@@ -20,16 +20,11 @@ export function UpvoteLogo({ size = 'md', variant = 'dark', showText = true, cla
 
   return (
     <div className={cn('flex items-center gap-2', className)}>
-      <div className={cn(
-        'flex items-center justify-center rounded-[8px]',
-        s.box,
-        isDark ? 'bg-lavender' : 'bg-foreground',
-      )}>
-        <ChevronUp
-          className={cn(s.icon, 'text-white')}
-          strokeWidth={3}
-        />
-      </div>
+      <img 
+        src={logoImage} 
+        alt="Trustloop" 
+        className={cn(s.box, 'object-contain')}
+      />
       {showText && (
         <span className={cn(
           'font-bold tracking-[-0.02em]',
