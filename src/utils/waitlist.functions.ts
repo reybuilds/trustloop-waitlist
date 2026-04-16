@@ -2,11 +2,13 @@ import { createServerFn } from '@tanstack/react-start';
 import { z } from 'zod';
 import { createClient } from '@supabase/supabase-js';
 
-function getAdminClient() {
+function getLocalClient() {
   const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key =
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
   if (!url || !key) {
-    throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in server env');
+    throw new Error('Missing Supabase URL or publishable key in server env');
   }
   return createClient(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },
@@ -23,8 +25,8 @@ export const joinWaitlist = createServerFn({ method: 'POST' })
   .handler(async ({ data }) => {
     const source = data.source ?? 'landing';
 
-    // 1. Insert into local Lovable Cloud (always)
-    const { error: localError } = await getAdminClient()
+    // 1. Insert into local Lovable Cloud (RLS allows anon insert)
+    const { error: localError } = await getLocalClient()
       .from('waitlist_signups')
       .insert({ email: data.email, source });
 
@@ -63,13 +65,11 @@ export const joinWaitlist = createServerFn({ method: 'POST' })
   });
 
 export const getWaitlistCount = createServerFn({ method: 'GET' }).handler(async () => {
-  const { count, error } = await getAdminClient()
-    .from('waitlist_signups')
-    .select('*', { count: 'exact', head: true });
+  const { data, error } = await getLocalClient().rpc('get_waitlist_count');
 
   if (error) {
     console.error('Failed to count waitlist:', error);
     return { count: 0 };
   }
-  return { count: count ?? 0 };
+  return { count: Number(data) || 0 };
 });
