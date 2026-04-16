@@ -24,7 +24,7 @@ export const joinWaitlist = createServerFn({ method: 'POST' })
     const source = data.source ?? 'landing';
 
     // 1. Insert into local Lovable Cloud (always)
-    const { error: localError } = await supabaseAdmin
+    const { error: localError } = await getAdminClient()
       .from('waitlist_signups')
       .insert({ email: data.email, source });
 
@@ -63,7 +63,7 @@ export const joinWaitlist = createServerFn({ method: 'POST' })
   });
 
 export const getWaitlistCount = createServerFn({ method: 'GET' }).handler(async () => {
-  const { count, error } = await supabaseAdmin
+  const { count, error } = await getAdminClient()
     .from('waitlist_signups')
     .select('*', { count: 'exact', head: true });
 
