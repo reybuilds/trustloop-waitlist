@@ -1,7 +1,17 @@
 import { createServerFn } from '@tanstack/react-start';
 import { z } from 'zod';
-import { supabaseAdmin } from '@/integrations/supabase/client.server';
 import { createClient } from '@supabase/supabase-js';
+
+function getAdminClient() {
+  const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) {
+    throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in server env');
+  }
+  return createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+}
 
 const emailSchema = z.object({
   email: z.string().trim().email().max(255),
