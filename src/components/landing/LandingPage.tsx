@@ -43,7 +43,7 @@ export function LandingPage() {
                 </div>
 
                 <h1 className="text-3xl font-bold leading-[1.08] tracking-[-0.02em] text-foreground sm:text-4xl md:text-5xl lg:text-[56px]">
-                  Collect testimonials on WhatsApp, share proof, boost conversions
+                  Collect & showcase verified testimonials in seconds
                 </h1>
 
                 <p className="mt-6 mx-auto lg:mx-0 max-w-md text-base leading-[1.6] text-muted-foreground sm:mt-8 sm:text-lg">
