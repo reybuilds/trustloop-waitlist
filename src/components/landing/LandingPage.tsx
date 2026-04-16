@@ -1,15 +1,8 @@
-import { useEffect } from 'react';
 import { UpvoteLogo } from '@/components/brand/UpvoteLogo';
+import { WaitlistForm } from '@/components/landing/WaitlistForm';
 import whatsappMockup from '@/assets/whatsapp-mockup.png';
 
 export function LandingPage() {
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://paperform.co/__embed.min.js';
-    document.body.appendChild(script);
-    return () => { script.remove(); };
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -51,7 +44,7 @@ export function LandingPage() {
                 </p>
 
                 <div className="mt-10">
-                  <div data-paperform-id="nay1bcdq"></div>
+                  <WaitlistForm />
                 </div>
               </div>
 
