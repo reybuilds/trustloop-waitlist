@@ -1,7 +1,17 @@
 import { createServerFn } from '@tanstack/react-start';
 import { z } from 'zod';
-import { supabaseAdmin } from '@/integrations/supabase/client.server';
 import { createClient } from '@supabase/supabase-js';
+
+function getAdminClient() {
+  const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) {
+    throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in server env');
+  }
+  return createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+}
 
 const emailSchema = z.object({
   email: z.string().trim().email().max(255),
@@ -14,7 +24,7 @@ export const joinWaitlist = createServerFn({ method: 'POST' })
     const source = data.source ?? 'landing';
 
     // 1. Insert into local Lovable Cloud (always)
-    const { error: localError } = await supabaseAdmin
+    const { error: localError } = await getAdminClient()
       .from('waitlist_signups')
       .insert({ email: data.email, source });
 
@@ -53,7 +63,7 @@ export const joinWaitlist = createServerFn({ method: 'POST' })
   });
 
 export const getWaitlistCount = createServerFn({ method: 'GET' }).handler(async () => {
-  const { count, error } = await supabaseAdmin
+  const { count, error } = await getAdminClient()
     .from('waitlist_signups')
     .select('*', { count: 'exact', head: true });
 
